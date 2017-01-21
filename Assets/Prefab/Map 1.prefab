@@ -54,7 +54,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scorePrefab: {fileID: 1786335919321650, guid: eb56f0f51b804eb4099cf7c5f7cb7785,
     type: 2}
-  numScorePickups: 10
+  numScorePickups: 1
 --- !u!212 &212472114121401578
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -19,10 +19,10 @@ public class FoodScript : MonoBehaviour {
 		// Did we hit the player
 		if (o.CompareTag ("Player")) {
 			ScoreScript scs = o.GetComponent<ScoreScript> ();
-			scs.addScore (score);
+			scs.addScore (score, true);
 			//o.GetComponent<HealthScript> ().removeHeard ();
-			Destroy (this.gameObject);
 		}
+		Destroy (this.gameObject);
 	}
 		
 }
