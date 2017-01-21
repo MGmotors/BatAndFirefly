@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ScrollScript : MonoBehaviour
 {
-    public GameObject mapPrefab, autoP, busP, baumP, postP, bushalteP, garbageP, highlampP, hanglampP;
+    public GameObject mapPrefab, autoP, busP, baumP, postP, bushalteP, garbageP, highlampP, hanglampP, obj;
     public Material waveMaterial;
     public List<GameObject> mapBlocks;
     public Vector3 scale;
@@ -12,10 +12,16 @@ public class ScrollScript : MonoBehaviour
     public float speed;
 	public float maxSpeed;
 	public float speedIncreasePerSecond;
+    public bool newMap;
+
 
     // Use this for initialization
     void Start()
     {
+        obj = new GameObject();
+        newMap = false;
+        speedScale = 1;
+        speed =  5 * speedScale;
         Vector3 nullP = Camera.main.ScreenToWorldPoint(new Vector3(0, 0, 0));
         Vector3 endP = Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth, Camera.main.pixelHeight, 1));
         float width = endP.x - nullP.x;
@@ -55,8 +61,14 @@ public class ScrollScript : MonoBehaviour
         float height = endP.y - nullP.y;
 
 
-        
-
+        if(newMap == true)
+        {
+            for (int i = 0; i < 5; i++)
+            {
+                SpawnObject();
+            }
+            newMap = false;
+        }
         if (mapBlocks[0].transform.position.y <= (-12))
         {
             GameObject toBeDeleted = mapBlocks[0];
@@ -66,11 +78,7 @@ public class ScrollScript : MonoBehaviour
             mapBlock.transform.localScale = scale;
             mapBlock.transform.position = new Vector3(mapBlocks[2].transform.position.x, mapBlocks[2].transform.position.y + height, 1);
             mapBlocks.Add(mapBlock);
-            for (int i = 0; i < 5; i++)
-            {
-                SpawnObject();
-            }
-            
+            newMap = true;
         }
 
         float inScreen = Camera.main.WorldToScreenPoint(mapBlocks[0].transform.position).y;
@@ -84,22 +92,20 @@ public class ScrollScript : MonoBehaviour
         bool space = false;
         Vector3 testVec;
         Bounds b;
-
-        int r = Random.Range(0, 7);
+        int r = Random.Range(0, 8);
         switch (r)
         {
             case 0:
-                testVec = TryObjPos(autoP, 6.5f);
+                testVec = TryObjPos(autoP, 2.4f);
                 testVec.Scale(scale);
                 b = new Bounds(testVec, autoP.GetComponent<SpriteRenderer>().sprite.bounds.size);
                 space = TestForCol(testVec, b);
                 
                 if (space == true)
                 {
-                    GameObject obj = GameObject.Instantiate<GameObject>(autoP);
+                    obj = GameObject.Instantiate<GameObject>(autoP);
                     obj.transform.position = testVec;
                     obj.transform.SetParent(mapBlocks[3].transform);
-                    return;
                 }
                 break;
 
@@ -111,10 +117,9 @@ public class ScrollScript : MonoBehaviour
                 
                 if (space == true)
                 {
-                    GameObject obj = GameObject.Instantiate<GameObject>(busP);
+                    obj = GameObject.Instantiate<GameObject>(busP);
                     obj.transform.position = testVec;
                     obj.transform.SetParent(mapBlocks[3].transform);
-                    return;
                 }
                 break;
 
@@ -126,10 +131,9 @@ public class ScrollScript : MonoBehaviour
                 
                 if (space == true)
                 {
-                    GameObject obj = GameObject.Instantiate<GameObject>(baumP);
+                    obj = GameObject.Instantiate<GameObject>(baumP);
                     obj.transform.position = testVec;
                     obj.transform.SetParent(mapBlocks[3].transform);
-                    return;
                 }
                 break;
 
@@ -141,10 +145,9 @@ public class ScrollScript : MonoBehaviour
                 
                 if (space == true)
                 {
-                    GameObject obj = GameObject.Instantiate<GameObject>(postP);
+                    obj = GameObject.Instantiate<GameObject>(postP);
                     obj.transform.position = testVec;
                     obj.transform.SetParent(mapBlocks[3].transform);
-                    return;
                 }
                 break;
 
@@ -156,10 +159,9 @@ public class ScrollScript : MonoBehaviour
                 
                 if (space == true)
                 {
-                    GameObject obj = GameObject.Instantiate<GameObject>(garbageP);
+                    obj = GameObject.Instantiate<GameObject>(garbageP);
                     obj.transform.position = testVec;
                     obj.transform.SetParent(mapBlocks[3].transform);
-                    return;
                 }
                 break;
 
@@ -171,10 +173,9 @@ public class ScrollScript : MonoBehaviour
                 
                 if (space == true)
                 {
-                    GameObject obj = GameObject.Instantiate<GameObject>(bushalteP);
+                    obj = GameObject.Instantiate<GameObject>(bushalteP);
                     obj.transform.position = testVec;
                     obj.transform.SetParent(mapBlocks[3].transform);
-                    return;
                 }
                 break;
 
@@ -186,10 +187,9 @@ public class ScrollScript : MonoBehaviour
                 
                 if (space == true)
                 {
-                    GameObject obj = GameObject.Instantiate<GameObject>(highlampP);
+                    obj = GameObject.Instantiate<GameObject>(highlampP);
                     obj.transform.position = testVec;
                     obj.transform.SetParent(mapBlocks[3].transform);
-                    return;
                 }
                 break;
 
@@ -201,16 +201,20 @@ public class ScrollScript : MonoBehaviour
                 
                 if (space == true)
                 {
-                    GameObject obj = GameObject.Instantiate<GameObject>(hanglampP);
+                    obj = GameObject.Instantiate<GameObject>(hanglampP);
                     obj.transform.position = testVec;
                     obj.transform.SetParent(mapBlocks[3].transform);
-                    return;
                 }
                 break;
 
             default:
                 break;
         }
+        if(obj.transform.position.x < 0)
+        {
+            obj.GetComponent<SpriteRenderer>().flipX = true;
+        }
+        return;
     }
 
     Vector3 TryObjPos(GameObject prefab, float xy)
