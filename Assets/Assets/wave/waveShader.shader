@@ -2,9 +2,10 @@
 {
 	Properties
 	{
-		_MainTex("Texture", 2D) = "black" {}
-		_BackTex("Texture", 2D) = "white" {}
-		_yOffset("Offset Float", Float) = 0.0
+		_MainTex ("Texture", 2D) = "black" {}
+		_BackTex ("Texture", 2D) = "white" {}
+		_yOffset ("Offset Float", Float) = 0.0
+		_Color ("Color", Color) = (1, 1, 1, 1)
 	}
 		SubShader
 	{
@@ -39,6 +40,7 @@
 			sampler2D _BackTex;
 			float4 _MainTex_ST;
 			float _yOffset;
+			fixed4 _Color;
 
 			v2f vert(appdata v)
 			{
@@ -54,7 +56,7 @@
 				// sample the texture
 				fixed4 col = tex2D(_MainTex, i.uv);
 				col.a = 1.0f - col.r;
-				col.rgb = tex2D(_BackTex, float2(i.uv.x, fmod(i.uv.y + _yOffset, 1.0f))).rgb;
+				col.rgb = _Color.rgb * tex2D(_BackTex, float2(i.uv.x, fmod(i.uv.y + _yOffset, 1.0f))).rgb;
 				// apply fog
 				//UNITY_APPLY_FOG(i.fogCoord, col);
 				return col;
