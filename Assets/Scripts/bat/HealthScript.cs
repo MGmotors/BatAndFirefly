@@ -12,6 +12,9 @@ public class HealthScript : MonoBehaviour {
 	// Health to start with
 	public int startingHeards;
 
+	public AudioClip acHeardUp;
+	public AudioClip acHeardDown;
+
 	private int currentHeards;
 	private List<GameObject> heartsOnScreen;
 
@@ -22,6 +25,8 @@ public class HealthScript : MonoBehaviour {
 	private int timesToBlinkLeft;
 	private float timeSinceLastBlink;
 	private const float BLINKING_SPEED = 0.2f;
+
+	private AudioSource myAudioSource;
 
 	// Use this for initialization
 	void Start () {
@@ -35,6 +40,7 @@ public class HealthScript : MonoBehaviour {
 
 		sRenderer = GetComponent<SpriteRenderer> ();
 		anim = GetComponent<Animator> ();
+		myAudioSource = this.gameObject.GetComponent<AudioSource> ();
 	}
 	
 	// Update is called once per frame
@@ -56,18 +62,29 @@ public class HealthScript : MonoBehaviour {
 		}
 	}
 
+	void OnTriggerEnter2D(Collider2D other){
+		if (other.gameObject.CompareTag ("Obstacle")) {
+			this.removeHeard ();
+		}
+	}
+
 	public void removeHeard(){
 		// Dont remove hard while blinking
 		if (timesToBlinkLeft > 0)
 			return;
 		
 		if (currentHeards > 0) {
+			
 			currentHeards--;
 			GameObject o = heartsOnScreen [0];
 			GameObject.Destroy (o);
 			heartsOnScreen.RemoveAt (0);
 			timeSinceLastBlink = BLINKING_SPEED;
 			timesToBlinkLeft = 3 * 2;
+
+			//play sound
+			myAudioSource.clip = acHeardDown;
+			myAudioSource.Play ();
 		}
 
 		if (currentHeards <= 0) {
@@ -83,5 +100,9 @@ public class HealthScript : MonoBehaviour {
 		GameObject o = GameObject.Instantiate (heartPrefab);
 		o.transform.SetParent (uiPanel.transform);
 		heartsOnScreen.Add (o);
+
+		//play sound
+		myAudioSource.clip = acHeardUp;
+		myAudioSource.Play ();
 	}
 }
