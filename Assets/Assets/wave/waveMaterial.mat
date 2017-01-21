@@ -147,7 +147,7 @@ Material:
       second: 0
     - first:
         name: _yOffset
-      second: 0
+      second: 40.34718
     m_Colors:
     - first:
         name: _Color

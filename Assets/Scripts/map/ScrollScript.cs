@@ -231,7 +231,7 @@ public class ScrollScript : MonoBehaviour
         {
             int i = 0;
             bool x = false;
-            Debug.Log(mapBlocks[3].transform.childCount);
+            //Debug.Log(mapBlocks[3].transform.childCount);
             foreach (Transform child in mapBlocks[3].transform)
             {
                 if (child.GetComponent<SpriteRenderer>().bounds.Intersects(bounds))
