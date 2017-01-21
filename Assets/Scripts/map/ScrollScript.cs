@@ -8,13 +8,14 @@ public class ScrollScript : MonoBehaviour
     public Material waveMaterial;
     public List<GameObject> mapBlocks;
     public Vector3 scale;
-    public float speedScale;
+ 
     public float speed;
+	public float maxSpeed;
+	public float speedIncreasePerSecond;
+
     // Use this for initialization
     void Start()
     {
-        speedScale = 1;
-        speed =  5 * speedScale;
         Vector3 nullP = Camera.main.ScreenToWorldPoint(new Vector3(0, 0, 0));
         Vector3 endP = Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth, Camera.main.pixelHeight, 1));
         float width = endP.x - nullP.x;
@@ -40,7 +41,10 @@ public class ScrollScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        mapBlocks[0].transform.position = new Vector3(mapBlocks[0].transform.position.x, mapBlocks[0].transform.position.y - speed * Time.deltaTime);
+		if (speed < maxSpeed) {
+			speed += speedIncreasePerSecond * Time.deltaTime;
+		}
+		mapBlocks[0].transform.position = new Vector3(mapBlocks[0].transform.position.x, mapBlocks[0].transform.position.y - speed * Time.deltaTime);
         mapBlocks[1].transform.position = new Vector3(mapBlocks[1].transform.position.x, mapBlocks[1].transform.position.y - speed * Time.deltaTime);
         mapBlocks[2].transform.position = new Vector3(mapBlocks[2].transform.position.x, mapBlocks[2].transform.position.y - speed * Time.deltaTime);
         mapBlocks[3].transform.position = new Vector3(mapBlocks[3].transform.position.x, mapBlocks[3].transform.position.y - speed * Time.deltaTime);
