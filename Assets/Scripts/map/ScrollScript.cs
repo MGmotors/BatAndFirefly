@@ -5,11 +5,16 @@ using UnityEngine;
 public class ScrollScript : MonoBehaviour
 {
     public GameObject mapPrefab, autoP, busP, baumP, postP, bushalteP, garbageP, highlampP, hanglampP;
+    public Material waveMaterial;
     public List<GameObject> mapBlocks;
     public Vector3 scale;
+    public float speedScale;
+    public float speed;
     // Use this for initialization
     void Start()
     {
+        speedScale = 1;
+        speed =  5 * speedScale;
         Vector3 nullP = Camera.main.ScreenToWorldPoint(new Vector3(0, 0, 0));
         Vector3 endP = Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth, Camera.main.pixelHeight, 1));
         float width = endP.x - nullP.x;
@@ -20,26 +25,34 @@ public class ScrollScript : MonoBehaviour
         for (int i = 0; i < 4; i++)
         {
             GameObject mapBlock = GameObject.Instantiate<GameObject>(mapPrefab);
-            mapBlock.transform.position = new Vector3(vSize.x, vSize.y, 1);
             mapBlock.transform.localScale = scale;
+            mapBlock.transform.position = new Vector3(vSize.x, vSize.y, 1);
             SpriteRenderer sr = mapBlock.GetComponent<SpriteRenderer>();
             vSize = new Vector2(vSize.x, vSize.y + height);
             mapBlocks.Add(mapBlock);
         }
+        float inScreen = Camera.main.WorldToScreenPoint(mapBlocks[0].transform.position).y;
+        Debug.Log(inScreen);
+        inScreen /= Camera.main.pixelHeight;
+        waveMaterial.SetFloat("_yOffset", -inScreen + 0.5f);
     }
 
     // Update is called once per frame
     void Update()
     {
-        mapBlocks[0].transform.position = new Vector3(mapBlocks[0].transform.position.x, mapBlocks[0].transform.position.y - 5 * Time.deltaTime);
-        mapBlocks[1].transform.position = new Vector3(mapBlocks[1].transform.position.x, mapBlocks[1].transform.position.y - 5 * Time.deltaTime);
-        mapBlocks[2].transform.position = new Vector3(mapBlocks[2].transform.position.x, mapBlocks[2].transform.position.y - 5 * Time.deltaTime);
-        mapBlocks[3].transform.position = new Vector3(mapBlocks[3].transform.position.x, mapBlocks[3].transform.position.y - 5 * Time.deltaTime);
+        mapBlocks[0].transform.position = new Vector3(mapBlocks[0].transform.position.x, mapBlocks[0].transform.position.y - speed * Time.deltaTime);
+        mapBlocks[1].transform.position = new Vector3(mapBlocks[1].transform.position.x, mapBlocks[1].transform.position.y - speed * Time.deltaTime);
+        mapBlocks[2].transform.position = new Vector3(mapBlocks[2].transform.position.x, mapBlocks[2].transform.position.y - speed * Time.deltaTime);
+        mapBlocks[3].transform.position = new Vector3(mapBlocks[3].transform.position.x, mapBlocks[3].transform.position.y - speed * Time.deltaTime);
 
         Vector3 nullP = Camera.main.ScreenToWorldPoint(new Vector3(0, 0, 0));
         Vector3 endP = Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth, Camera.main.pixelHeight, 1));
         float width = endP.x - nullP.x;
         float height = endP.y - nullP.y;
+
+        
+        
+        waveMaterial.SetFloat("_yOffset", waveMaterial.GetFloat("_yOffset") + (speed / 10) * Time.deltaTime);
 
         if (mapBlocks[0].transform.position.y <= (-12))
         {
@@ -73,7 +86,7 @@ public class ScrollScript : MonoBehaviour
                 testVec.Scale(scale);
                 b = new Bounds(testVec, autoP.GetComponent<SpriteRenderer>().sprite.bounds.size);
                 space = TestForCol(testVec, b);
-                Debug.Log(space + " " +b+ " "+ testVec);
+                
                 if (space == true)
                 {
                     GameObject obj = GameObject.Instantiate<GameObject>(autoP);
@@ -88,7 +101,7 @@ public class ScrollScript : MonoBehaviour
                 testVec.Scale(scale);
                 b = new Bounds(testVec, busP.GetComponent<SpriteRenderer>().sprite.bounds.size);
                 space = TestForCol(testVec, b);
-                Debug.Log(space + " " +b+ " "+ testVec);
+                
                 if (space == true)
                 {
                     GameObject obj = GameObject.Instantiate<GameObject>(busP);
@@ -103,7 +116,7 @@ public class ScrollScript : MonoBehaviour
                 testVec.Scale(scale);
                 b = new Bounds(testVec, baumP.GetComponent<SpriteRenderer>().sprite.bounds.size);
                 space = TestForCol(testVec, b);
-                Debug.Log(space + " " +b+ " "+ testVec);
+                
                 if (space == true)
                 {
                     GameObject obj = GameObject.Instantiate<GameObject>(baumP);
@@ -118,7 +131,7 @@ public class ScrollScript : MonoBehaviour
                 testVec.Scale(scale);
                 b = new Bounds(testVec, postP.GetComponent<SpriteRenderer>().sprite.bounds.size);
                 space = TestForCol(testVec, b);
-                Debug.Log(space + " " +b+ " "+ testVec);
+                
                 if (space == true)
                 {
                     GameObject obj = GameObject.Instantiate<GameObject>(postP);
@@ -133,7 +146,7 @@ public class ScrollScript : MonoBehaviour
                 testVec.Scale(scale);
                 b = new Bounds(testVec, garbageP.GetComponent<SpriteRenderer>().sprite.bounds.size);
                 space = TestForCol(testVec, b);
-                Debug.Log(space + " " +b+ " "+ testVec);
+                
                 if (space == true)
                 {
                     GameObject obj = GameObject.Instantiate<GameObject>(garbageP);
@@ -148,7 +161,7 @@ public class ScrollScript : MonoBehaviour
                 testVec.Scale(scale);
                 b = new Bounds(testVec, bushalteP.GetComponent<SpriteRenderer>().sprite.bounds.size);
                 space = TestForCol(testVec, b);
-                Debug.Log(space + " " +b+ " "+ testVec);
+                
                 if (space == true)
                 {
                     GameObject obj = GameObject.Instantiate<GameObject>(bushalteP);
@@ -163,7 +176,7 @@ public class ScrollScript : MonoBehaviour
                 testVec.Scale(scale);
                 b = new Bounds(testVec, highlampP.GetComponent<SpriteRenderer>().sprite.bounds.size);
                 space = TestForCol(testVec, b);
-                Debug.Log(space + " " +b+ " "+ testVec);
+                
                 if (space == true)
                 {
                     GameObject obj = GameObject.Instantiate<GameObject>(highlampP);
@@ -178,7 +191,7 @@ public class ScrollScript : MonoBehaviour
                 testVec.Scale(scale);
                 b = new Bounds(testVec, highlampP.GetComponent<SpriteRenderer>().sprite.bounds.size);
                 space = TestForCol(testVec, b);
-                Debug.Log(space + " " +b+ " "+ testVec);
+                
                 if (space == true)
                 {
                     GameObject obj = GameObject.Instantiate<GameObject>(hanglampP);
