@@ -236,8 +236,8 @@ MonoBehaviour:
   uiPanel: {fileID: 904193537}
   gameOverText: {fileID: 1071179307}
   startingHeards: 3
-  acHeardUp: {fileID: 0}
-  acHeardDown: {fileID: 0}
+  acHeardUp: {fileID: 8300000, guid: d1cba1afba7cc8841a5acaf07daa55ef, type: 3}
+  acHeardDown: {fileID: 8300000, guid: 28dbc0a5467430449937ec94eec16c85, type: 3}
 --- !u!50 &407353436
 Rigidbody2D:
   serializedVersion: 4

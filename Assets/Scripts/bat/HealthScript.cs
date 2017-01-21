@@ -62,6 +62,12 @@ public class HealthScript : MonoBehaviour {
 		}
 	}
 
+	void OnTriggerEnter2D(Collider2D other){
+		if (other.gameObject.CompareTag ("Obstacle")) {
+			this.removeHeard ();
+		}
+	}
+
 	public void removeHeard(){
 		// Dont remove hard while blinking
 		if (timesToBlinkLeft > 0)
