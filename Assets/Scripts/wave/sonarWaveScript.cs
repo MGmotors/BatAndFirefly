@@ -20,7 +20,7 @@ public class sonarWaveScript : MonoBehaviour {
         sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, sr.color.a - disappearTime * Time.deltaTime);
         if(sr.color.a <= 0.0f)
         {
-            Destroy(this);
+            Destroy(this.gameObject);
         }
         transform.localScale += scaleTime * new Vector3(Time.deltaTime, Time.deltaTime, Time.deltaTime);
         transform.position = new Vector3(transform.position.x, transform.position.y + moveForwardTime * Time.deltaTime, transform.position.z);
