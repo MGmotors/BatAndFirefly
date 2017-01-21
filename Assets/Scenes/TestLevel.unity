@@ -270,7 +270,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wave: {fileID: 1098594473867826, guid: 623cfc4832feb4540a578b75303dd0ea, type: 2}
-  timeBetweenWaves: 1.02
+  timeBetweenWaves: 1
   timePassedSinceLastWave: 0
 --- !u!82 &407353438
 AudioSource:
