@@ -454,7 +454,7 @@ PlayerSettings:
   vrEditorSettings: {}
   cloudServicesEnabled:
     Build: 1
-    Collab: 1
+    Collab: 0
     UNet: 1
   cloudProjectId: 942e9310-9e09-48d4-9821-82137659bdd8
   projectName: Bat and Firefly
