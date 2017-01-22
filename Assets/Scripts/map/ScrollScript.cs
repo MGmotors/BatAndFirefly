@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ScrollScript : MonoBehaviour
 {
-    public GameObject mapPrefab, autoP, busP, baumP, postP, bushalteP, garbageP, highlampP, hanglampP, opaP,obj;
+    public GameObject mapPrefab, autoP, busP, baumP, postP, bushalteP, garbageP, highlampP, hanglampP, opaP, puHealthP, puWaveP, puFireflyP, obj;
     public Material waveMaterial;
     public List<GameObject> mapBlocks;
     public Vector3 scale;
@@ -32,12 +32,10 @@ public class ScrollScript : MonoBehaviour
             GameObject mapBlock = GameObject.Instantiate<GameObject>(mapPrefab);
             mapBlock.transform.localScale = scale;
             mapBlock.transform.position = new Vector3(vSize.x, vSize.y, 1);
-            SpriteRenderer sr = mapBlock.GetComponent<SpriteRenderer>();
             vSize = new Vector2(vSize.x, vSize.y + height);
             mapBlocks.Add(mapBlock);
         }
         float inScreen = Camera.main.WorldToScreenPoint(mapBlocks[0].transform.position).y;
-        //Debug.Log(inScreen);
         inScreen /= (float) Camera.main.pixelHeight;
         waveMaterial.SetFloat("_yOffset", -inScreen + 0.5f);
     }
@@ -55,13 +53,12 @@ public class ScrollScript : MonoBehaviour
 
         Vector3 nullP = Camera.main.ScreenToWorldPoint(new Vector3(0, 0, 0));
         Vector3 endP = Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth, Camera.main.pixelHeight, 1));
-        float width = endP.x - nullP.x;
         float height = endP.y - nullP.y;
 
 
         if(newMap == true)
         {
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 5; i++)
             {
                 SpawnObject();
             }
@@ -86,7 +83,6 @@ public class ScrollScript : MonoBehaviour
 
     void SpawnObject()
     {
-        List<GameObject> spawnedObjects = new List<GameObject>();
         bool space = false;
         Vector3 testVec;
         Bounds b;
@@ -172,18 +168,8 @@ public class ScrollScript : MonoBehaviour
                 break;
 
             case 6:
-                /*testVec = TryObjPos(highlampP, 4.9f);
-                testVec.Scale(scale);
-                b = new Bounds(testVec, highlampP.GetComponent<SpriteRenderer>().sprite.bounds.size);
-                space = TestForCol(testVec, b);
-                if (space == true)
-                {
-                    obj = GameObject.Instantiate<GameObject>(highlampP);
-                    obj.transform.position = testVec;
-                    obj.transform.SetParent(mapBlocks[3].transform);
-                }
+                SpawnPowerUps();
                 break;
-                */
             case 7:
                 testVec = TryObjPos(hanglampP, 0.0f);
                 b = new Bounds(testVec, hanglampP.GetComponent<SpriteRenderer>().sprite.bounds.size);
@@ -218,6 +204,85 @@ public class ScrollScript : MonoBehaviour
         return;
     }
 
+    void SpawnPowerUps()
+    {
+        bool space = false;
+        Vector3 testVec;
+        Bounds b;
+        int random = Random.Range(0, 3);
+        switch (random)
+        {
+            case 0:
+                testVec = TryObjPos(puWaveP, Random.Range(-4.3f,4.3f));
+                testVec.Scale(scale);
+                b = new Bounds(testVec, puWaveP.GetComponent<SpriteRenderer>().sprite.bounds.size);
+                space = TestForCol(testVec, b);
+                if(space == true)
+                {
+                    obj = GameObject.Instantiate<GameObject>(puWaveP);
+                    obj.transform.position = testVec;
+                    obj.transform.SetParent(mapBlocks[3].transform);
+                }
+                break;
+            case 1:
+                int r = Random.Range(0, 2);
+                if (GameObject.FindGameObjectWithTag("Player").GetComponent<HealthScript>().currentHeards >= 3)
+                {
+                    testVec = TryObjPos(puHealthP, Random.Range(-4.3f, 4.3f));
+                    testVec.Scale(scale);
+                    b = new Bounds(testVec, puHealthP.GetComponent<SpriteRenderer>().sprite.bounds.size);
+                    space = TestForCol(testVec, b);
+                    if (space == true)
+                    {
+                        obj = GameObject.Instantiate<GameObject>(puHealthP);
+                        obj.transform.position = testVec;
+                        obj.transform.SetParent(mapBlocks[3].transform);
+                    }
+                }
+                else if(r == 0)
+                {
+                    testVec = TryObjPos(puWaveP, Random.Range(-4.3f, 4.3f));
+                    testVec.Scale(scale);
+                    b = new Bounds(testVec, puWaveP.GetComponent<SpriteRenderer>().sprite.bounds.size);
+                    space = TestForCol(testVec, b);
+                    if (space == true)
+                    {
+                        obj = GameObject.Instantiate<GameObject>(puWaveP);
+                        obj.transform.position = testVec;
+                        obj.transform.SetParent(mapBlocks[3].transform);
+                    } 
+                }
+                else if(r == 1)
+                {
+                    testVec = TryObjPos(puWaveP, Random.Range(-4.3f, 4.3f));
+                    testVec.Scale(scale);
+                    b = new Bounds(testVec, puWaveP.GetComponent<SpriteRenderer>().sprite.bounds.size);
+                    space = TestForCol(testVec, b);
+                    if (space == true)
+                    {
+                        obj = GameObject.Instantiate<GameObject>(puWaveP);
+                        obj.transform.position = testVec;
+                        obj.transform.SetParent(mapBlocks[3].transform);
+                    }
+                }
+                break;
+            case 2:
+                testVec = TryObjPos(puFireflyP, Random.Range(-4.3f,4.3f));
+                testVec.Scale(scale);
+                b = new Bounds(testVec, puFireflyP.GetComponent<SpriteRenderer>().sprite.bounds.size);
+                space = TestForCol(testVec, b);
+                if (space == true)
+                {
+                    obj = GameObject.Instantiate<GameObject>(puFireflyP);
+                    obj.transform.position = testVec;
+                    obj.transform.SetParent(mapBlocks[3].transform);
+                }
+                break;
+            default:
+                break;
+        }
+    }
+
     Vector3 TryObjPos(GameObject prefab, float xy)
     {
         Vector3 actMapM = mapBlocks[3].transform.position;
@@ -243,7 +308,6 @@ public class ScrollScript : MonoBehaviour
         {
             int i = 0;
             bool x = false;
-            //Debug.Log(mapBlocks[3].transform.childCount);
             foreach (Transform child in mapBlocks[3].transform)
             {
                 if (child.name == "ignoreCheck" && bounds.size != child.GetComponent<SpriteRenderer>().bounds.size)

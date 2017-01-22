@@ -15,7 +15,7 @@ public class HealthScript : MonoBehaviour {
 	public AudioClip acHeardUp;
 	public AudioClip acHeardDown;
 
-	private int currentHeards;
+	public int currentHeards;
 	private List<GameObject> heartsOnScreen;
 
 	private Animator anim;
