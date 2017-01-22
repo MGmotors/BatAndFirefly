@@ -171,16 +171,27 @@ public class ScrollScript : MonoBehaviour
                 SpawnPowerUps();
                 break;
             case 7:
-                testVec = TryObjPos(hanglampP, 0.0f);
-                b = new Bounds(testVec, hanglampP.GetComponent<SpriteRenderer>().sprite.bounds.size);
-                space = TestForCol(testVec, b);
-                if (space == true)
+                bool alreadySet = false;
+                foreach(Transform child in mapBlocks[3].transform)
                 {
-                    obj = GameObject.Instantiate<GameObject>(hanglampP);
-                    obj.transform.position = testVec;
-                    obj.transform.SetParent(mapBlocks[3].transform);
-                    obj.name = "ignoreCheck";
+                    if (child.name == "ignoreCheck")
+                        alreadySet = true;
                 }
+
+                if (!alreadySet)
+                {
+                    testVec = TryObjPos(hanglampP, 0.0f);
+                    b = new Bounds(testVec, hanglampP.GetComponent<SpriteRenderer>().sprite.bounds.size);
+                    space = TestForCol(testVec, b);
+                    if (space == true)
+                    {
+                        obj = GameObject.Instantiate<GameObject>(hanglampP);
+                        obj.transform.position = testVec;
+                        obj.transform.SetParent(mapBlocks[3].transform);
+                        obj.name = "ignoreCheck";
+                    }
+                }
+                else return;
                 break;
             case 8:
                 testVec = TryObjPos(opaP, Random.Range(-9.6f, 9.6f));
