@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 212604572360659740}
   m_Layer: 8
   m_Name: circleWave
-  m_TagString: Untagged
+  m_TagString: highlight
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -54,7 +54,7 @@ GameObject:
   - component: {fileID: 114848080139812554}
   m_Layer: 0
   m_Name: Fireflies
-  m_TagString: Untagged
+  m_TagString: Fireflies
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -98,7 +98,7 @@ Transform:
   m_GameObject: {fileID: 1489916555820318}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.3915232, y: 1.3915215, z: 1.3915215}
+  m_LocalScale: {x: 224.10625, y: 224.10593, z: 0}
   m_Children: []
   m_Father: {fileID: 4714884921896446}
   m_RootOrder: 0
@@ -111,7 +111,7 @@ Transform:
   m_GameObject: {fileID: 1538296352798246}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 2.97}
-  m_LocalScale: {x: 4.1201487, y: 4.120151, z: 2.0600755}
+  m_LocalScale: {x: 3, y: 3, z: 2.0600755}
   m_Children: []
   m_Father: {fileID: 4225899354273824}
   m_RootOrder: 0
@@ -155,9 +155,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firefly: {fileID: 1788727238985436}
-  fireflyCount: 5
-  radius: 0.84
-  mvSpeed: 10.84
+  fireflyCount: 4
+  radius: 1
+  mvSpeed: 7
 --- !u!212 &212474701160461548
 SpriteRenderer:
   m_ObjectHideFlags: 1
