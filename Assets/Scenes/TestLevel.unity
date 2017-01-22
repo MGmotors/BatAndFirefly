@@ -273,8 +273,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scorePerSecond: 0.5
   scoreTextWidet: {fileID: 660876732}
-  timeBetweenFlashes: 0.25
-  timesToFlash: 4
+  timeBetweenFlashes: 0
+  timesToFlash: 0
 --- !u!114 &407353434
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -891,12 +891,15 @@ MonoBehaviour:
   garbageP: {fileID: 1307208699404608, guid: 746f22d2f8a4509449b9207169d6b821, type: 2}
   highlampP: {fileID: 1481307730308464, guid: b73fadd2793c6014e8c8f6c487e68264, type: 2}
   hanglampP: {fileID: 1230837223898664, guid: bef487b08e615394cb562363e35aaf55, type: 2}
+  opaP: {fileID: 1402202050678544, guid: 072ead9301a2a01459d570106f59c845, type: 2}
+  obj: {fileID: 0}
   waveMaterial: {fileID: 2100000, guid: f5163cbbfe20a8f4b89259dca1fe7f51, type: 2}
   mapBlocks: []
   scale: {x: 0, y: 0, z: 0}
   speed: 4
-  maxSpeed: 12
-  speedIncreasePerSecond: 0.07
+  maxSpeed: 0
+  speedIncreasePerSecond: 0
+  newMap: 0
 --- !u!4 &1533106671
 Transform:
   m_ObjectHideFlags: 0
