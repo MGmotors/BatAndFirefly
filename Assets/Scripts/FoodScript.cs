@@ -20,6 +20,7 @@ public class FoodScript : MonoBehaviour {
 		if (o.CompareTag ("Player")) {
 			ScoreScript scs = o.GetComponent<ScoreScript> ();
 			scs.addScore (score, true);
+            scs.miceEaten++;
 			//o.GetComponent<HealthScript> ().removeHeard ();
 		}
 		Destroy (this.gameObject);

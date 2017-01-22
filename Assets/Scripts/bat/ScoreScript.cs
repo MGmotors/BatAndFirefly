@@ -8,6 +8,7 @@ public class ScoreScript : MonoBehaviour {
 	public Text scoreTextWidet;
 	public float timeBetweenFlashes;
 	public int timesToFlash;
+    public int miceEaten;
 
 	private float currentScore;
 
@@ -20,7 +21,9 @@ public class ScoreScript : MonoBehaviour {
 		currentScore = 0;
 		timesFlashed = timesFlashed* 2;
 		timeSinceLastFlash = 0;
-	}
+        miceEaten = 0;
+
+    }
 	
 	// Update is called once per frame
 	void Update () {
