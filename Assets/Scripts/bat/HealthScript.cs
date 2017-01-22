@@ -28,6 +28,8 @@ public class HealthScript : MonoBehaviour {
 
 	private AudioSource myAudioSource;
 
+	private PersistentScript pers;
+
 	// Use this for initialization
 	void Start () {
 		currentHeards = startingHeards;
@@ -37,6 +39,8 @@ public class HealthScript : MonoBehaviour {
 			o.transform.SetParent (uiPanel.transform);
 			heartsOnScreen.Add (o);
 		}
+
+		pers = GameObject.Find ("PersistentGO").GetComponent<PersistentScript> ();
 
 		sRenderer = GetComponent<SpriteRenderer> ();
 		anim = GetComponent<Animator> ();
@@ -83,6 +87,7 @@ public class HealthScript : MonoBehaviour {
 			timesToBlinkLeft = 3 * 2;
 
 			//play sound
+			myAudioSource.volume = pers.volume;
 			myAudioSource.clip = acHeardDown;
 			myAudioSource.Play ();
 		}
@@ -90,6 +95,7 @@ public class HealthScript : MonoBehaviour {
 		if (currentHeards <= 0) {
 			this.gameObject.SetActive (false);
 			gameOverText.text = "GAME OVER";
+			this.gameObject.GetComponent<ScoreScript> ().scoreTextWidet.enabled = true;
 		}
 	
 	}
@@ -103,6 +109,7 @@ public class HealthScript : MonoBehaviour {
 
 		//play sound
 		myAudioSource.clip = acHeardUp;
+		myAudioSource.volume = pers.volume;
 		myAudioSource.Play ();
 	}
 }
