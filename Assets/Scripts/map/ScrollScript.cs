@@ -33,8 +33,8 @@ public class ScrollScript : MonoBehaviour
             mapBlocks.Add(mapBlock);
         }
         float inScreen = Camera.main.WorldToScreenPoint(mapBlocks[0].transform.position).y;
-        Debug.Log(inScreen);
-        inScreen /= Camera.main.pixelHeight;
+        //Debug.Log(inScreen);
+        inScreen /= (float) Camera.main.pixelHeight;
         waveMaterial.SetFloat("_yOffset", -inScreen + 0.5f);
     }
 
@@ -54,9 +54,8 @@ public class ScrollScript : MonoBehaviour
         float width = endP.x - nullP.x;
         float height = endP.y - nullP.y;
 
+
         
-        
-        waveMaterial.SetFloat("_yOffset", waveMaterial.GetFloat("_yOffset") + (speed / 10) * Time.deltaTime);
 
         if (mapBlocks[0].transform.position.y <= (-12))
         {
@@ -73,6 +72,10 @@ public class ScrollScript : MonoBehaviour
             }
             
         }
+
+        float inScreen = Camera.main.WorldToScreenPoint(mapBlocks[0].transform.position).y;
+        inScreen /= (float)Camera.main.pixelHeight;
+        waveMaterial.SetFloat("_yOffset", 50.0f - inScreen + 0.5f);
     }
 
     void SpawnObject()
