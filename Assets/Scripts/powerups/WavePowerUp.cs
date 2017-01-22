@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class WavePowerUp : MonoBehaviour {
 
+
 	// Use this for initialization
 	void Start () {
 		
@@ -16,7 +17,11 @@ public class WavePowerUp : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D coll)
     {
-        GameObject.FindGameObjectWithTag("Player").GetComponent<SonarScript>().timeBetweenWaves *= 0.9f;
-        Destroy(gameObject);
+		if (PickupSettings.maxSonarPickups > PickupSettings.pickedUpSonars) {
+			PickupSettings.pickedUpSonars++;
+			GameObject.FindGameObjectWithTag("Player").GetComponent<SonarScript>().timeBetweenWaves *= PickupSettings.modifierPerSonar;
+			Destroy(gameObject);
+		}
+
     }
 }

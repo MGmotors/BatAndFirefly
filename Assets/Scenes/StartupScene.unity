@@ -333,7 +333,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 243098071182905902, guid: 232907928e27836438542d4b016aba56,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: 37b65c93e41f399428062ec53f53fa74, type: 3}
+  m_audioClip: {fileID: 8300000, guid: c7b2f66dc3fa81e49badf3476e2c00fc, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -410,7 +410,7 @@ AudioLowPassFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 635906402}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_LowpassResonanceQ: 1
   lowpassLevelCustomCurve:
@@ -522,6 +522,7 @@ GameObject:
   - component: {fileID: 1006717135}
   - component: {fileID: 1006717134}
   - component: {fileID: 1006717136}
+  - component: {fileID: 1006717137}
   m_Layer: 0
   m_Name: PersistentGO
   m_TagString: Untagged
@@ -542,7 +543,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   volume: 0.5
   brightness: 0.5
-  splashScreenDelay: 4
+  splashScreenDelay: 2
 --- !u!4 &1006717135
 Transform:
   m_ObjectHideFlags: 0
@@ -571,6 +572,17 @@ MonoBehaviour:
   menuMusic: {fileID: 635906404}
   gameMusic: {fileID: 218862927}
   fadeSpeed: 0.25
+--- !u!114 &1006717137
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1006717133}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6b30d89b8435fd4387b4bb38abb9e30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1018594467
 GameObject:
   m_ObjectHideFlags: 0

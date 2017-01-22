@@ -93,9 +93,7 @@ public class HealthScript : MonoBehaviour {
 		}
 
 		if (currentHeards <= 0) {
-			this.gameObject.SetActive (false);
-			gameOverText.text = "GAME OVER";
-			this.gameObject.GetComponent<ScoreScript> ().scoreTextWidet.enabled = true;
+			endGame();
 		}
 	
 	}
@@ -111,5 +109,15 @@ public class HealthScript : MonoBehaviour {
 		myAudioSource.clip = acHeardUp;
 		myAudioSource.volume = pers.volume;
 		myAudioSource.Play ();
+	}
+
+	public void endGame(){
+		this.gameObject.SetActive (false);
+		gameOverText.enabled = true;
+		gameOverText.text = "GAME OVER";
+		// Enable because of blinking
+		this.gameObject.GetComponent<ScoreScript> ().scoreTextWidet.enabled = true; //?
+
+		HighscoreManager.SetHighscore (this.gameObject.GetComponent<ScoreScript> ().getScore ());
 	}
 }

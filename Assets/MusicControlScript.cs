@@ -45,6 +45,8 @@ public class MusicControlScript : MonoBehaviour {
 
 	public void onMainLevelLoad(){
 		Debug.Log ("on main level load");
+		PickupSettings.pickedUpFirefly = 0;
+		PickupSettings.pickedUpSonars = 0;
 		oldA = menuMusic;
 		newA = gameMusic;
 		fadeLevel = 0;

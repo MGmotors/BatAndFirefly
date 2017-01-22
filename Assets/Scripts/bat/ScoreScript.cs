@@ -47,4 +47,8 @@ public class ScoreScript : MonoBehaviour {
 			timesFlashed = 0;
 		}
 	}
+
+	public int getScore(){
+		return (int)this.currentScore;
+	}
 }
