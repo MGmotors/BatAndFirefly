@@ -19,7 +19,7 @@ public class FireflyPowerUp : MonoBehaviour {
         GameObject[] go = GameObject.FindGameObjectsWithTag("highlight");
         foreach(GameObject obj in go)
         {
-            obj.transform.localScale = new Vector3(obj.transform.localScale.x + 3f, obj.transform.localScale.x + 3f);
+            obj.transform.localScale = new Vector3(obj.transform.localScale.x + 1f, obj.transform.localScale.y + 1f);
         }
         Destroy(gameObject);
     }
