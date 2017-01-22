@@ -123,7 +123,7 @@ public class TutorialScrollScript : MonoBehaviour {
                         Instantiate<GameObject>(fireflySwarm, new Vector3(-screenInWorld.x / 2 - fireflySwarm.transform.GetChild(0).GetComponent<SpriteRenderer>().bounds.size.x, 0.0f, 0.0f), Quaternion.identity);
                         txtHint.text = "Control the Fireflies with your mouse, or your eyes*";
                         txtObjective.text = "*if you have a tobii EyeX eyetracker";
-                        tutorialTimer = 10.0f;
+                        tutorialTimer = 8.0f;
                         tutorialLevel++;
                     }
                 }
