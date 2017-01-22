@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TutorialScrollScript : MonoBehaviour {
     public GameObject autoP, busP, baumP, postP, bushalteP, garbageP, highlampP, hanglampP, opaP;
@@ -12,6 +13,7 @@ public class TutorialScrollScript : MonoBehaviour {
     public GameObject player;
     public UnityEngine.UI.Text txtHint;
     public UnityEngine.UI.Text txtObjective;
+    public GameObject btnBack;
 
     private GameObject[] mapBlocks;
     private readonly int numOfBlocks = 3;
@@ -118,9 +120,10 @@ public class TutorialScrollScript : MonoBehaviour {
                     if(objectCount == 9)
                     {
                         // spawn firefly swarm
-                        GameObject fireflies = Instantiate<GameObject>(fireflySwarm, new Vector3(-screenInWorld.x / 2 - fireflySwarm.transform.GetChild(0).GetComponent<SpriteRenderer>().bounds.size.x, 0.0f, 0.0f), Quaternion.identity);
+                        Instantiate<GameObject>(fireflySwarm, new Vector3(-screenInWorld.x / 2 - fireflySwarm.transform.GetChild(0).GetComponent<SpriteRenderer>().bounds.size.x, 0.0f, 0.0f), Quaternion.identity);
                         txtHint.text = "Control the Fireflies with your mouse, or your eyes*";
                         txtObjective.text = "*if you have a tobii EyeX eyetracker";
+                        tutorialTimer = 8.0f;
                         tutorialLevel++;
                     }
                 }
@@ -149,9 +152,24 @@ public class TutorialScrollScript : MonoBehaviour {
             
         }
         else if(tutorialLevel == 2)
-        {
-            // TODO: after timer start powerup tutorial?
+        { 
+            tutorialTimer -= Time.deltaTime;
+            if (tutorialTimer <= 0.0f)
+            {
+                
+                txtHint.text = "Well done!";
+                // create button to leave to the mainMenu
+                btnBack.SetActive(true);
+                tutorialLevel++;
+            }
+
         }
         waveMaterial.SetFloat("_yOffset", -mapBlock.transform.position.y / screenInWorld.y + 10.0f); // + 10.0f so modulo won't go negative
+    }
+
+    public void btnBack_clicked()
+    {
+        Debug.Log("done");
+        SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
     }
 }
