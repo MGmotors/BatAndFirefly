@@ -223,21 +223,23 @@ public class ScrollScript : MonoBehaviour
         int random = Random.Range(0, 3);
         switch (random)
         {
-            case 0:
-                testVec = TryObjPos(puWaveP, Random.Range(-4.3f,4.3f));
-                testVec.Scale(scale);
-                b = new Bounds(testVec, puWaveP.GetComponent<SpriteRenderer>().sprite.bounds.size);
-                space = TestForCol(testVec, b);
-                if(space == true)
-                {
-                    obj = GameObject.Instantiate<GameObject>(puWaveP);
-                    obj.transform.position = testVec;
-                    obj.transform.SetParent(mapBlocks[3].transform);
-                }
+		case 0:
+			if (PickupSettings.pickedUpSonars < PickupSettings.maxSonarPickups) {
+				testVec = TryObjPos (puWaveP, Random.Range (-4.3f, 4.3f));
+				testVec.Scale (scale);
+				b = new Bounds (testVec, puWaveP.GetComponent<SpriteRenderer> ().sprite.bounds.size);
+				space = TestForCol (testVec, b);
+				if (space == true) {
+					obj = GameObject.Instantiate<GameObject> (puWaveP);
+					obj.transform.position = testVec;
+					obj.transform.SetParent (mapBlocks [3].transform);
+				}
+			}
                 break;
-            case 1:
-                int r = Random.Range(0, 2);
-                if (GameObject.FindGameObjectWithTag("Player").GetComponent<HealthScript>().currentHeards >= 3)
+		case 1:
+			Debug.Log ("try spawn heart " + GameObject.FindGameObjectWithTag("Player").GetComponent<HealthScript>().currentHeards.ToString());
+
+                if (GameObject.FindGameObjectWithTag("Player").GetComponent<HealthScript>().currentHeards < 3)
                 {
                     testVec = TryObjPos(puHealthP, Random.Range(-4.3f, 4.3f));
                     testVec.Scale(scale);
@@ -250,44 +252,19 @@ public class ScrollScript : MonoBehaviour
                         obj.transform.SetParent(mapBlocks[3].transform);
                     }
                 }
-                else if(r == 0)
-                {
-                    testVec = TryObjPos(puWaveP, Random.Range(-4.3f, 4.3f));
-                    testVec.Scale(scale);
-                    b = new Bounds(testVec, puWaveP.GetComponent<SpriteRenderer>().sprite.bounds.size);
-                    space = TestForCol(testVec, b);
-                    if (space == true)
-                    {
-                        obj = GameObject.Instantiate<GameObject>(puWaveP);
-                        obj.transform.position = testVec;
-                        obj.transform.SetParent(mapBlocks[3].transform);
-                    } 
-                }
-                else if(r == 1)
-                {
-                    testVec = TryObjPos(puWaveP, Random.Range(-4.3f, 4.3f));
-                    testVec.Scale(scale);
-                    b = new Bounds(testVec, puWaveP.GetComponent<SpriteRenderer>().sprite.bounds.size);
-                    space = TestForCol(testVec, b);
-                    if (space == true)
-                    {
-                        obj = GameObject.Instantiate<GameObject>(puWaveP);
-                        obj.transform.position = testVec;
-                        obj.transform.SetParent(mapBlocks[3].transform);
-                    }
-                }
                 break;
-            case 2:
-                testVec = TryObjPos(puFireflyP, Random.Range(-4.3f,4.3f));
-                testVec.Scale(scale);
-                b = new Bounds(testVec, puFireflyP.GetComponent<SpriteRenderer>().sprite.bounds.size);
-                space = TestForCol(testVec, b);
-                if (space == true)
-                {
-                    obj = GameObject.Instantiate<GameObject>(puFireflyP);
-                    obj.transform.position = testVec;
-                    obj.transform.SetParent(mapBlocks[3].transform);
-                }
+		case 2:
+			if (PickupSettings.pickedUpFirefly < PickupSettings.maxFireflyPickups) {
+				testVec = TryObjPos (puFireflyP, Random.Range (-4.3f, 4.3f));
+				testVec.Scale (scale);
+				b = new Bounds (testVec, puFireflyP.GetComponent<SpriteRenderer> ().sprite.bounds.size);
+				space = TestForCol (testVec, b);
+				if (space == true) {
+					obj = GameObject.Instantiate<GameObject> (puFireflyP);
+					obj.transform.position = testVec;
+					obj.transform.SetParent (mapBlocks [3].transform);
+				}
+			}
                 break;
             default:
                 break;
