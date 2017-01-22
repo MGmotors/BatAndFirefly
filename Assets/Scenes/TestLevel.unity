@@ -277,6 +277,7 @@ MonoBehaviour:
   scoreTextWidet: {fileID: 660876732}
   timeBetweenFlashes: 0
   timesToFlash: 0
+  miceEaten: 0
 --- !u!114 &407353434
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -307,6 +308,7 @@ MonoBehaviour:
   startingHeards: 3
   acHeardUp: {fileID: 8300000, guid: d1cba1afba7cc8841a5acaf07daa55ef, type: 3}
   acHeardDown: {fileID: 8300000, guid: 28dbc0a5467430449937ec94eec16c85, type: 3}
+  currentHeards: 0
 --- !u!50 &407353436
 Rigidbody2D:
   serializedVersion: 4
@@ -582,7 +584,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -312.1, y: -243.79999}
   m_SizeDelta: {x: 248.9, y: 72.2}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &660876732

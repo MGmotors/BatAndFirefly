@@ -14,7 +14,7 @@ public class TutorialScrollScript : MonoBehaviour {
     public UnityEngine.UI.Text txtObjective;
 
     private GameObject[] mapBlocks;
-    private readonly int numOfBlocks = 4;
+    private readonly int numOfBlocks = 3;
     private Vector3 screenInWorld;
     private Vector3 scale;
     private Vector3 mapBlockSize;
@@ -115,7 +115,7 @@ public class TutorialScrollScript : MonoBehaviour {
                             break;
                     }
                     objectCount++;
-                    if(objectCount == 10)
+                    if(objectCount == 9)
                     {
                         // spawn firefly swarm
                         GameObject fireflies = Instantiate<GameObject>(fireflySwarm, new Vector3(-screenInWorld.x / 2 - fireflySwarm.transform.GetChild(0).GetComponent<SpriteRenderer>().bounds.size.x, 0.0f, 0.0f), Quaternion.identity);

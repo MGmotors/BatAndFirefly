@@ -97,7 +97,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &61230037039722604
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -224,6 +224,7 @@ MonoBehaviour:
   scoreTextWidet: {fileID: 0}
   timeBetweenFlashes: 0
   timesToFlash: 0
+  miceEaten: 0
 --- !u!114 &114547441396029894
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -268,6 +269,7 @@ MonoBehaviour:
   startingHeards: 3
   acHeardUp: {fileID: 8300000, guid: d1cba1afba7cc8841a5acaf07daa55ef, type: 3}
   acHeardDown: {fileID: 8300000, guid: 28dbc0a5467430449937ec94eec16c85, type: 3}
+  currentHeards: 0
 --- !u!212 &212558580252641864
 SpriteRenderer:
   m_ObjectHideFlags: 1

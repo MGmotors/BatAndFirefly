@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SonarWaveScript : MonoBehaviour {
+public class sonarWaveScript : MonoBehaviour {
 
     public float disappearTime;
     public float moveForwardTime;
