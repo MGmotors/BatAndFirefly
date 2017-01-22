@@ -172,7 +172,7 @@ public class ScrollScript : MonoBehaviour
                 break;
 
             case 6:
-                testVec = TryObjPos(highlampP, 4.9f);
+                /*testVec = TryObjPos(highlampP, 4.9f);
                 testVec.Scale(scale);
                 b = new Bounds(testVec, highlampP.GetComponent<SpriteRenderer>().sprite.bounds.size);
                 space = TestForCol(testVec, b);
@@ -183,7 +183,7 @@ public class ScrollScript : MonoBehaviour
                     obj.transform.SetParent(mapBlocks[3].transform);
                 }
                 break;
-
+                */
             case 7:
                 testVec = TryObjPos(hanglampP, 0.0f);
                 b = new Bounds(testVec, hanglampP.GetComponent<SpriteRenderer>().sprite.bounds.size);
