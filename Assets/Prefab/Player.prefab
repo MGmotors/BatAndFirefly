@@ -107,7 +107,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_Offset: {x: -0.20344079, y: 0}
   serializedVersion: 2
@@ -249,7 +249,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wave: {fileID: 1098594473867826, guid: 623cfc4832feb4540a578b75303dd0ea, type: 2}
-  timeBetweenWaves: 1
+  timeBetweenWaves: 0.5
   timePassedSinceLastWave: 0
 --- !u!114 &114968874021947744
 MonoBehaviour:

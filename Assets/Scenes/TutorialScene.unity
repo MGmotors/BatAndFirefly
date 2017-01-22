@@ -876,6 +876,11 @@ Prefab:
       propertyPath: uiPanel
       value: 
       objectReference: {fileID: 171242994}
+    - target: {fileID: 114720710517722404, guid: 6c1304a255d859d4fab912b7fd1eb28d,
+        type: 2}
+      propertyPath: timeBetweenWaves
+      value: 0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6c1304a255d859d4fab912b7fd1eb28d, type: 2}
   m_IsPrefabParent: 0
