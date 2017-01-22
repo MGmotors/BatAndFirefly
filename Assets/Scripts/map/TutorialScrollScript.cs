@@ -78,6 +78,7 @@ public class TutorialScrollScript : MonoBehaviour {
                 {
                     // Spawn every object once
                     GameObject obj;
+					player.GetComponent<BoxCollider2D> ().enabled = false;
                     switch (objectCount)
                     {
                         // Don't ask me about these positions, I took them from ScrollScript.cs

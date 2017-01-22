@@ -27,6 +27,10 @@ public class MainMenuClickListener : MonoBehaviour {
 		
 	}
 
+	public void btnQuit_clicked(){
+		Application.Quit ();
+	}
+
 	public void btnStart_clicked(){
 		SceneManager.LoadScene ("TestLevel", LoadSceneMode.Single);
 		if (pers != null) {
